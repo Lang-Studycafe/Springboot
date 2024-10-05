@@ -8,10 +8,10 @@ public class UserResponse {
     private String name;
     private String tel;
 
-    public UserResponse(long id, User user){
+    public UserResponse(long id, String name, String tel) {
         this.id = id;
-        this.name = user.getName();
-        this.tel = user.getTel();
+        this.name = name;
+        this.tel = tel;
     }
 
     public long getId() {
