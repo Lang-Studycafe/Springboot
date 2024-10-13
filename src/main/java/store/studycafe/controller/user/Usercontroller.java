@@ -20,10 +20,11 @@ public class Usercontroller {
 
     private final JdbcTemplate jdbcTemplate;
     //UserService 클래스의 updateUser를 호출하기 위해 필드 추가
-    private final UserService userService = new UserService();
+    private final UserService userService;
 
     public Usercontroller(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.userService = new UserService(jdbcTemplate);
     }
 
     //사용자 저장
