@@ -8,6 +8,7 @@ import store.studycafe.domain.User;
 import store.studycafe.dto.request.UserCreateRequest;
 import store.studycafe.dto.request.UserUpdateRequest;
 import store.studycafe.dto.response.UserResponse;
+import store.studycafe.service.UserService;
 
 
 import java.sql.ResultSet;
@@ -18,6 +19,8 @@ import java.util.List;
 public class Usercontroller {
 
     private final JdbcTemplate jdbcTemplate;
+    //UserService 클래스의 updateUser를 호출하기 위해 필드 추가
+    private final UserService userService = new UserService();
 
     public Usercontroller(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -47,8 +50,7 @@ public class Usercontroller {
 
     @PutMapping("/user")
     public void updateUser(@RequestBody UserUpdateRequest request){
-        String sql = "UPDATE user SET tel = ? WHERE id = ?";
-        jdbcTemplate.update(sql, request.getTel(), request.getId());
+        userService.updateUser(jdbcTemplate, request);
     }
 
     @DeleteMapping("/user")
